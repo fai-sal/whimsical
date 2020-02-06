@@ -19,6 +19,9 @@
         font-weight: 400;
         font-size: 15px;
         color: #101928;
+        &.outside{
+          color: #ab9b9b;
+        }
       }
     }
   }

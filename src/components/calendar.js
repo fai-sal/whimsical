@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import moment from 'moment';
 import '../styles/calendar.scss';
 const MONTHS = moment.months(), WEEKDAYS = moment.weekdaysShort();
@@ -17,10 +18,18 @@ export default class Calendar extends React.Component {
 
         let weeks = [];
         for (let week = startWeek; week <= endWeek; week++) {
-            let startingDate = moment().week(week).startOf('week')
+            let startingDate = moment().week(week).startOf('week');
             weeks.push(
                 <div className={`week-row`} key={week}>
-                    {Array(7).fill(0).map((__, day) => <div key={week + day} className="day">{startingDate.clone().add(day, 'day').format('D')}</div>)}
+                    {Array(7).fill(0).map((__, day) => {
+                        let currentDate = startingDate.clone().add(day, 'day').format('D'),
+                            classNames = clsx({
+                                day: true,
+                                outside: !startingDate.clone().add(day, 'day').isSame(moment().month(`${month}`).startOf('month').format("YYYY-MM-DD"),'month')
+                            });
+                        return (<div key={week + day} className={classNames}>{currentDate}</div>)
+                    })
+                    }
                 </div>
             )
         }
@@ -50,13 +59,10 @@ export default class Calendar extends React.Component {
 
     render() {
         const { month } = this.state;
-        console.log('this state : ', this.state)
         return (
             <div className={`calendar`}>
                 <div className="calendar-caption">
                     <h1>{MONTHS[month]}</h1>
-                    {/* <button onClick={() => this.setState({ month: month - 1 })}>prev</button>
-                    <button onClick={() => this.setState({ month: month + 1 })}>next</button> */}
                     <button onClick={() => this.handleMonthChange('prevMonth')}>prev</button>
                     <button onClick={() => this.handleMonthChange('nextMonth')}>next</button>
                 </div>
