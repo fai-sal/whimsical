@@ -8,12 +8,13 @@ export default class Calendar extends React.Component {
         this.state = {
             month: moment().month(),
             startWeek: moment().startOf('month').week(),
-            endWeek: moment().endOf('month').week()
+            endWeek: moment().endOf('month').week(),
+            totalWeeks: moment().month('11').endOf('month').diff(moment().month('0').startOf('month'), 'week')
         }
     }
     renderCalendar = () => {
         const { month, startWeek, endWeek } = this.state;
-        // const startWeek = moment().startOf('month').week(), endWeek = moment().endOf('month').week();
+
         let weeks = [];
         for (let week = startWeek; week <= endWeek; week++) {
             let startingDate = moment().week(week).startOf('week')
@@ -27,24 +28,37 @@ export default class Calendar extends React.Component {
     }
 
     handleMonthChange = (type) => {
-        const { month, startWeek, endWeek } = this.state;
-        this.setState({
-            month: type === 'prev' ? month - 1 : month + 1,
-            startWeek: type === 'prev' ? startWeek - 1 : endWeek + 1,
-            endWeek: type === 'prev' ? startWeek - 5 : endWeek + 5
-        })
+        if (type === 'nextMonth') {
+            this.setState(state => {
+                return {
+                    month: moment().month(`${state.month}`).add(1, 'months').month(),
+                    startWeek: moment().month(`${state.month}`).add(1, 'months').startOf('month').week(),
+                    endWeek: moment().month(`${state.month}`).add(1, 'months').endOf('month').week()
+                }
+            })
+        } else if (type === 'prevMonth') {
+            this.setState(state => {
+                return {
+                    month: moment().month(`${state.month}`).subtract(1, 'months').month(),
+                    startWeek: moment().month(`${state.month}`).subtract(1, 'months').startOf('month').week(),
+                    endWeek: moment().month(`${state.month}`).subtract(1, 'months').endOf('month').week()
+                }
+            })
+        }
+
     }
 
     render() {
         const { month } = this.state;
+        console.log('this state : ', this.state)
         return (
             <div className={`calendar`}>
                 <div className="calendar-caption">
                     <h1>{MONTHS[month]}</h1>
                     {/* <button onClick={() => this.setState({ month: month - 1 })}>prev</button>
                     <button onClick={() => this.setState({ month: month + 1 })}>next</button> */}
-                    <button onClick={() => this.handleMonthChange('prev')}>prev</button>
-                    <button onClick={() => this.handleMonthChange('next')}>next</button>
+                    <button onClick={() => this.handleMonthChange('prevMonth')}>prev</button>
+                    <button onClick={() => this.handleMonthChange('nextMonth')}>next</button>
                 </div>
 
                 <div className="week-days-name week-row">
