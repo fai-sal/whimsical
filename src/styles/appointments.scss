@@ -1,0 +1,9 @@
+.appointment-calendar {
+  .appointment-calendar-header,
+  .selected-dates {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
