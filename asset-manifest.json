@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/whimsical/static/css/main.29d8566d.chunk.css",
-    "main.js": "/whimsical/static/js/main.a032bf49.chunk.js",
-    "main.js.map": "/whimsical/static/js/main.a032bf49.chunk.js.map",
+    "main.css": "/whimsical/static/css/main.50fee1dd.chunk.css",
+    "main.js": "/whimsical/static/js/main.1386b200.chunk.js",
+    "main.js.map": "/whimsical/static/js/main.1386b200.chunk.js.map",
     "runtime-main.js": "/whimsical/static/js/runtime-main.e307ffa4.js",
     "runtime-main.js.map": "/whimsical/static/js/runtime-main.e307ffa4.js.map",
-    "static/js/2.351a3795.chunk.js": "/whimsical/static/js/2.351a3795.chunk.js",
-    "static/js/2.351a3795.chunk.js.map": "/whimsical/static/js/2.351a3795.chunk.js.map",
+    "static/js/2.5545fccf.chunk.js": "/whimsical/static/js/2.5545fccf.chunk.js",
+    "static/js/2.5545fccf.chunk.js.map": "/whimsical/static/js/2.5545fccf.chunk.js.map",
     "index.html": "/whimsical/index.html",
-    "precache-manifest.6905673585cd316a03c9c1df3e414ef9.js": "/whimsical/precache-manifest.6905673585cd316a03c9c1df3e414ef9.js",
+    "precache-manifest.90f5dedff6982246aa868d7f1799cbf9.js": "/whimsical/precache-manifest.90f5dedff6982246aa868d7f1799cbf9.js",
     "service-worker.js": "/whimsical/service-worker.js",
-    "static/css/main.29d8566d.chunk.css.map": "/whimsical/static/css/main.29d8566d.chunk.css.map",
-    "static/js/2.351a3795.chunk.js.LICENSE.txt": "/whimsical/static/js/2.351a3795.chunk.js.LICENSE.txt"
+    "static/css/main.50fee1dd.chunk.css.map": "/whimsical/static/css/main.50fee1dd.chunk.css.map",
+    "static/js/2.5545fccf.chunk.js.LICENSE.txt": "/whimsical/static/js/2.5545fccf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e307ffa4.js",
-    "static/js/2.351a3795.chunk.js",
-    "static/css/main.29d8566d.chunk.css",
-    "static/js/main.a032bf49.chunk.js"
+    "static/js/2.5545fccf.chunk.js",
+    "static/css/main.50fee1dd.chunk.css",
+    "static/js/main.1386b200.chunk.js"
   ]
 }
