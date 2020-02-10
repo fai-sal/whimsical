@@ -1,7 +1,7 @@
 import Calendar from './calendar';
-import Appointments from './appointments';
+import Day from './appointments';
 
 export {
     Calendar,
-    Appointments
+    Day
 }

@@ -1,45 +1,86 @@
-import React from 'react';
-import clsx from 'clsx';
+import React, { Fragment } from 'react';
 import moment from 'moment';
-import '../styles/appointments.scss';
-const WEEKDAYS = moment.weekdaysShort();
 
-export default class Appointments extends React.Component {
+export default class Day extends React.Component {
+
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            view: 'day',
-            week: moment().startOf('month').week()
+            showTimeSpan: null
         }
     }
 
+    renderHour = (hour, name, date, month) => {
+        const { showTimeSpan } = this.state;
+        const timeSpans = [0, 0.25, 0.5, 0.75];
+        return timeSpans.map(item => {
+            return (
+                < div
+                    key={item}
+                    onMouseEnter={() => this.setState({ showTimeSpan: `${hour + item}${name}${date}${month}` })}
+                    onMouseLeave={() => this.setState({ showTimeSpan: null })}
+                    className={`time-span${showTimeSpan === `${hour + item}${name}${date}${month}` ? ' show' : ''}`}
+                >
+                    <span className="label" > {moment.utc((hour + item) * 3600 * 1000).format('HH : mm')}</span>
+                </div >
+            );
+        })
+    }
 
     render() {
-        const { week } = this.state;
-        console.log('this.state : ', this.state)
-        const classNames = clsx({
-            'appointment-calendar': true
-        });
-
-        const renderCalendar = () => {
-            let dates = [], startingDate = moment().week(week).startOf('week');
-            dates.push(
-                Array(7).fill(0).map((__, day) => {
-                    let currentDate = startingDate.clone().add(day, 'day').format('D');
-                    return (<div key={currentDate} className={''}>{currentDate}</div>)
-                })
-            )
-            return dates;
-        }
+        const { seletedDays } = this.props;
         return (
-            <div className={classNames}>
-                <div className="appointment-calendar-header">
-                    {WEEKDAYS.map(dayName => (<div key={dayName} className="day">{dayName}</div>))}
+            <Fragment>
+                {
+                    seletedDays.length > 0 &&
+                    <div className={`selected-dates`}>
+                        {
+                            seletedDays.map(({ date, name }, index) => {
+                                return (<div key={`${date}${name}`} className="slected-day">{date} {name}</div>)
+                            })
+                        }
+                    </div>
+                }
+                <div className="appointments">
+                    <div className="hour-labels">
+                        {
+                            Array(24).fill(0).map((_, hour) => <div className="hour-label" key={hour}>{moment.utc(hour * 3600 * 1000).format('HH:mm')}</div>)
+                        }
+
+                    </div>
+                    {
+                        seletedDays.map(({ name, date, month }) => {
+                            return (
+                                <div className="day" key={name + date + month}>
+
+                                    {
+                                        Array(24).fill(0).map((_, hour) => {
+                                            return (
+                                                <div className={`hour ${hour}`} key={hour} >
+                                                    {this.renderHour(hour, name, date, month)}
+                                                </div>
+                                            );
+                                        })
+                                    }
+                                </div>
+                            );
+                        })
+                    }
+
                 </div>
-                <div className="selected-dates">
-                    {renderCalendar()}
-                </div>
-            </div>
+            </Fragment>
         )
     }
+}
+
+Day.defaultProps = {
+    seletedDays: [
+        { date: '11', month: 'February', name: 'Monday' },
+        { date: '12', month: 'February', name: 'Tuesday' },
+        { date: '13', month: 'February', name: 'Wednesday' },
+        { date: '14', month: 'February', name: 'Thursday' },
+        { date: '15', month: 'February', name: 'Friday' },
+        { date: '16', month: 'February', name: 'Satday' },
+        { date: '17', month: 'February', name: 'Monday' }
+    ]
 }
