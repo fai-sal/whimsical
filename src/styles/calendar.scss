@@ -51,7 +51,7 @@
     border-right: 1px solid #dee3e7;
     .hour-label {
       height: 100px;
-      padding: 5px 10px;
+      // padding: 5px 10px;
     }
   }
   .day {
@@ -76,19 +76,23 @@
           border-bottom: thin;
         }
         .label {
-          display: none;
+          color: transparent;
           padding: 0px 10px;
+          font-weight: 700;
+          font-size: 15px;
         }
         &.show {
           background-color: #3578e51f;
           .label {
-            display: inline-block;
             color: #3578e5;
-            font-weight: 700;
-            font-size: 15px;
           }
         }
       }
     }
   }
+}
+
+
+.off .hour .time-span:not(.show) {
+  background: repeating-linear-gradient(0deg, transparent, transparent 7px, rgba(0, 0, 0, 0.2) 1px, transparent 8px), repeating-linear-gradient(90deg, transparent, transparent 7px, rgba(0, 0, 0, 0.2) 1px, transparent 8px);
 }

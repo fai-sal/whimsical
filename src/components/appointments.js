@@ -6,7 +6,22 @@ export default class Day extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            showTimeSpan: null
+            showTimeSpan: null,
+            appointments: {
+                '2020-02-11': [
+                    {
+                        date: '11',
+                        month: 'February',
+                        name: 'Monday',
+                        year: '2020',
+                        startingTime: '10.00',
+                        endingTime: '11.30',
+                        assignedStuff: 'Mr. X',
+                        purpose: 'Hair treatment'
+                    }
+                ]
+
+            }
         }
     }
 
@@ -51,7 +66,7 @@ export default class Day extends React.Component {
                     {
                         seletedDays.map(({ name, date, month }) => {
                             return (
-                                <div className="day" key={name + date + month}>
+                                <div className={`day${name==='Sunday'?' off':''}`} key={name + date + month}>
 
                                     {
                                         Array(24).fill(0).map((_, hour) => {
@@ -75,12 +90,13 @@ export default class Day extends React.Component {
 
 Day.defaultProps = {
     seletedDays: [
-        { date: '11', month: 'February', name: 'Monday' },
-        { date: '12', month: 'February', name: 'Tuesday' },
-        { date: '13', month: 'February', name: 'Wednesday' },
-        { date: '14', month: 'February', name: 'Thursday' },
-        { date: '15', month: 'February', name: 'Friday' },
-        { date: '16', month: 'February', name: 'Satday' },
-        { date: '17', month: 'February', name: 'Monday' }
+        { date: '11', month: '02', name: 'Monday', year: '2020' },
+        { date: '12', month: '02', name: 'Tuesday', year: '2020' },
+        { date: '13', month: '02', name: 'Wednesday', year: '2020' },
+        { date: '14', month: '02', name: 'Thursday', year: '2020' },
+        { date: '15', month: '02', name: 'Friday', year: '2020' },
+        { date: '16', month: '02', name: 'Satday', year: '2020' },
+        { date: '17', month: '02', name: 'Sunday', year: '2020' },
+        { date: '18', month: '02', name: 'Monday', year: '2020' }
     ]
 }

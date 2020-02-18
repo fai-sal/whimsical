@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import { Calendar, Day } from './components'
+import { Calendar, Day, Table } from './components'
 function App() {
   return (
     <div className="App">
-      <Calendar />
-      <Day />
+      {/* <Calendar /> */}
+      {/* <Day /> */}
+      <Table />
     </div>
   );
 }
